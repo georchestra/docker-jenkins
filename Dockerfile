@@ -17,5 +17,5 @@ RUN /usr/local/bin/install-plugins.sh ant antisamy-markup-formatter authenticati
       gcal git git-changelog git-client icon-shim javadoc job-dsl junit ldap mailer                            \
       matrix-auth matrix-project maven-plugin pam-auth scm-api script-security                                 \
       ssh ssh-agent ssh-credentials ssh-slaves subversion token-macro translation                              \
-      windows-slaves workflow-step-api parameterized-trigger
+      windows-slaves workflow-step-api parameterized-trigger repository
 
