@@ -12,9 +12,11 @@ RUN apt-get update && apt-get install -y docker-engine \
 
 RUN addgroup jenkins docker
 
+USER jenkins
+
 RUN /usr/local/bin/install-plugins.sh ant antisamy-markup-formatter authentication-tokens bouncycastle-api     \
       config-file-provider credentials cvs docker-build-step docker-commons external-monitor-job               \
-      gcal git git-changelog git-client icon-shim javadoc job-dsl junit ldap mailer                            \
+      gcal git git-changelog git-client icon-shim ircbot javadoc job-dsl junit ldap mailer                     \
       matrix-auth matrix-project maven-plugin pam-auth scm-api script-security                                 \
       ssh ssh-agent ssh-credentials ssh-slaves subversion token-macro translation                              \
       windows-slaves workflow-step-api parameterized-trigger repository
