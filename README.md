@@ -21,7 +21,7 @@ node('docker') {
             sh """mvn  -Dmaven.test.failure.ignore clean install               \
        --non-recursive"""
 
-            sh """mvn clean install -pl config -Dserver=${c2c_project}         \
+            sh """mvn clean install -pl config                                 \
        -Dmaven.javadoc.failOnError=false"""
 
             sh """mvn clean install -pl commons,epsg-extension                 \
