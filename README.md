@@ -11,24 +11,25 @@ node('docker') {
     stage('docker pulling image builder image') {
         sh 'docker pull georchestra/jenkins-builder'
     }
-   withDockerContainer(image: 'georchestra/jenkins-builder', args: "--privileged") {
+    withDockerContainer(image: 'georchestra/jenkins-builder', args: "--privileged") {
         stage('Preparation') {
-            git url:'https://github.com/georchestra/georchestra.git', branch:"${geor_branch}"
+            git url:'https://github.com/georchestra/georchestra.git'
             sh "git submodule update --init --recursive"
             sh 'service docker start'
         }
         stage('build necessary modules') {
-            sh """mvn  -Dmaven.test.failure.ignore clean install \
+            sh """mvn  -Dmaven.test.failure.ignore clean install               \
        --non-recursive"""
-            sh """mvn clean install -pl config -Dserver=${c2c_project}    \
+
+            sh """mvn clean install -pl config -Dserver=${c2c_project}         \
        -Dmaven.javadoc.failOnError=false"""
-            sh """mvn clean install -pl commons,epsg-extension     \
+
+            sh """mvn clean install -pl commons,epsg-extension                 \
        -Dmaven.javadoc.failOnError=false"""
         }
 
         stage('build mapfishapp') {
-            sh """mvn -Dmaven.test.failure.ignore clean install \
-         -Dserver=${c2c_project}                                              \
+            sh """mvn -Dmaven.test.failure.ignore clean install               \
          -Dmaven.javadoc.failOnError=false                                    \
          -pl mapfishapp"""
         }
