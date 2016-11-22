@@ -15,5 +15,7 @@ RUN curl -sSL https://get.docker.com/ | sh
 ADD ./wrapdocker /usr/local/bin/wrapdocker
 RUN chmod +x /usr/local/bin/wrapdocker
 
+ENV LC_ALL C.UTF-8
+
 CMD ["wrapdocker"]
 
