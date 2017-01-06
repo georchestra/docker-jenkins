@@ -2,11 +2,8 @@ from maven:3-jdk-7
 
 
 RUN apt update && apt install -y python-virtualenv ant ant-optional \
-      apt-transport-https \
-      ca-certificates \
-      curl \
-      lxc \
-      iptables
+      apt-transport-https ca-certificates curl lxc iptables         \
+      reprepro rpm fakeroot && rm -rf /var/lib/apt/lists/*
 
 # Tribute to https://curlpipesh.tumblr.com
 RUN curl -sSL https://get.docker.com/ | sh
