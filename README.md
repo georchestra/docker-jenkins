@@ -36,3 +36,25 @@ node('docker') {
     }
 }
 ```
+
+# Caveats
+
+On some jenkins setups, the build can be mounted on very long paths as working
+directory, this could end up with the following issue when maven deals with
+jsbuild JS minification:
+
+https://github.com/pypa/virtualenv/issues/596
+
+If this is the case, the workaround can be to use the globally-provided jsbuild
+(see Dockerfile), then to replace build.sh in the geOrchestra source tree by
+the ones in `/usr/src`.
+
+The following step can be used to hotfix the `build.sh` scripts in your Jenkinsfile:
+
+```
+  stage('hotfix shell scripts in geOrchestra sources') {
+    // Replace jsbuild.sh to to circumvent silly path names
+    sh """cp /usr/src/extractorapp-build.sh ./extractorapp/jsbuild/build.sh"""
+    sh """cp /usr/src/mapfishapp-build.sh ./mapfishapp/jsbuild/build.sh"""
+  }
+```
